@@ -3,7 +3,6 @@ package ru.mail.kievsan.geo;
 
 import ru.mail.kievsan.entity.Country;
 import ru.mail.kievsan.entity.Location;
-import java.util.List;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

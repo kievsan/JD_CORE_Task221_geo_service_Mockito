@@ -1,3 +1,6 @@
+package ru.mail.kievsan;
+
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +10,7 @@ import ru.mail.kievsan.i18n.LocalizationService;
 import ru.mail.kievsan.i18n.LocalizationServiceImpl;
 import ru.mail.kievsan.sender.MessageSender;
 import ru.mail.kievsan.sender.MessageSenderImpl;
+
 
 public class Main {
 
