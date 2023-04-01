@@ -10,29 +10,29 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LocalizationServiceImplTest {
 
     private static String russianText, englishText;
-    private static LocalizationServiceImpl localizationServiceImpl;
+    private LocalizationServiceImpl localizationServiceImpl;
 
     @BeforeAll
     public static void beforeAll() {
         System.out.println("LocalizationServiceImpl tests started");
-        localizationServiceImpl = new LocalizationServiceImpl();
         englishText = "Welcome!";
         russianText = "Добро пожаловать!";
     }
 
     @BeforeEach
     public void beforeEach() {
+        localizationServiceImpl = new LocalizationServiceImpl();
         System.out.println("\nnew LocalizationServiceImpl Test started");
     }
 
     @AfterEach
     public void AfterEach() {
+        localizationServiceImpl = null;
         System.out.println("\nLocalizationServiceImpl Test complete");
     }
 
     @AfterAll
     public static void AfterAll() {
-        localizationServiceImpl = null;
         russianText = null;
         englishText = null;
         System.out.println("\nLocalizationServiceImpl tests complete");
