@@ -6,8 +6,8 @@ public class LocalizationServiceImpl implements LocalizationService {
 
     public String locale(Country country) {
         if (country == Country.RUSSIA) {
-            return "Добро пожаловать";
+            return "Добро пожаловать!";
         }
-        return "Welcome";
+        return "Welcome!";
     }
 }

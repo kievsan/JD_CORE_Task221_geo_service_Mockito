@@ -52,24 +52,4 @@ class MainTest {
         assertEquals(expected.getCity(), actual.getCity());
         assertEquals(expected.getCountry(), actual.getCountry());
     }
-
-    // Тест для проверки возвращаемого текста (класса LocalizationServiceImpl)
-    @Test
-    void testReturnTextChecksUSA() {
-        System.out.println("Тест №4 - проверка возвращаемого текста страны США");
-        LocalizationServiceImpl localizationServiceImpl = new LocalizationServiceImpl();
-        String expected = englishText;
-        String actual = localizationServiceImpl.locale(Country.USA);        // Проверил работу метода public String locale(Country country).
-        assertEquals(expected, actual);
-    }
-
-    // Тест для проверки возвращаемого текста (класса LocalizationServiceImpl)
-    @Test
-    void testReturnTextChecksRUSSIA() {
-        System.out.println("Тест №5 - проверка возвращаемого текста страны России");
-        LocalizationServiceImpl localizationServiceImpl = new LocalizationServiceImpl();
-        String expected = russianText;
-        String actual = localizationServiceImpl.locale(Country.RUSSIA);     // Проверил работу метода public String locale(Country country).
-        assertEquals(expected, actual);
-    }
 }

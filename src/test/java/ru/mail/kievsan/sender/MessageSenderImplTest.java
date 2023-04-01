@@ -28,6 +28,10 @@ public class MessageSenderImplTest {
         System.out.println("MessageSenderImpl tests started");
         geoServiceImpl = Mockito.mock(GeoServiceImpl.class);
         localizationServiceImpl = Mockito.mock(LocalizationServiceImpl.class);
+        NEW_YORK_IP = "96.44.183.149";
+        englishText = "Welcome!";
+        MOSCOW_IP = "172.0.32.11";
+        russianText = "Добро пожаловать!";
     }
 
     @BeforeEach
@@ -56,27 +60,7 @@ public class MessageSenderImplTest {
     }
 
     @Test
-    void testMessageSenderImpl_RUSSIA() {
-        MOSCOW_IP = "172.0.32.11";
-        russianText = "Добро пожаловать!";
-
-        mock.put(MessageSenderImpl.IP_ADDRESS_HEADER, MOSCOW_IP);
-
-        Mockito.when(geoServiceImpl.byIp(MOSCOW_IP))
-                .thenReturn(new Location("Moscow", Country.RUSSIA, "Lenina", 15));
-        Mockito.when(localizationServiceImpl.locale(Country.RUSSIA))
-                .thenReturn(russianText);
-
-        String expected = russianText;
-        String actual = messageSenderImpl.send(mock);
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void testMessageSenderImpl_USA() {
-        NEW_YORK_IP = "96.44.183.149";
-        englishText = "Welcome!";
-
+    void test41_MessageSenderImpl_USA() {
         mock.put(MessageSenderImpl.IP_ADDRESS_HEADER, NEW_YORK_IP);
 
         Mockito.when(geoServiceImpl.byIp(NEW_YORK_IP))
@@ -85,6 +69,20 @@ public class MessageSenderImplTest {
                 .thenReturn(englishText);
 
         String expected = englishText;
+        String actual = messageSenderImpl.send(mock);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void test42_MessageSenderImpl_RUSSIA() {
+        mock.put(MessageSenderImpl.IP_ADDRESS_HEADER, MOSCOW_IP);
+
+        Mockito.when(geoServiceImpl.byIp(MOSCOW_IP))
+                .thenReturn(new Location("Moscow", Country.RUSSIA, "Lenina", 15));
+        Mockito.when(localizationServiceImpl.locale(Country.RUSSIA))
+                .thenReturn(russianText);
+
+        String expected = russianText;
         String actual = messageSenderImpl.send(mock);
         assertEquals(expected, actual);
     }
