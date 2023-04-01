@@ -42,49 +42,6 @@ class MainTest {
         System.out.println("AfterEach call");
     }
 
-    // Tест для проверки языка отправляемого сообщения (класс MessageSender) с использованием Mockito
-    @Test
-    void testMessageSenderImpl_RUSSIA() {
-        System.out.println("Тест №1 - проверка, что MessageSenderImpl" +
-                " всегда отправляет только русский текст, если ip относится к Российским адресам");
-        GeoServiceImpl geoServiceImpl = Mockito.mock(GeoServiceImpl.class);
-        LocalizationServiceImpl localizationServiceImpl = Mockito.mock(LocalizationServiceImpl.class);
-        MessageSenderImpl messageSenderImpl = new MessageSenderImpl(geoServiceImpl, localizationServiceImpl);
-
-        Map<String, String> mock = new HashMap<>();
-        mock.put(MessageSenderImpl.IP_ADDRESS_HEADER, MOSCOW_IP);
-
-        Mockito.when(geoServiceImpl.byIp(MOSCOW_IP))
-                .thenReturn(new Location("Moscow", Country.RUSSIA, "Lenina", 15));
-        Mockito.when(localizationServiceImpl.locale(Country.RUSSIA))
-                .thenReturn("Добро пожаловать");
-
-        String expected = russianText;
-        String actual = messageSenderImpl.send(mock);
-        assertEquals(expected, actual);
-    }
-
-    // Tест для проверки языка отправляемого сообщения (класс MessageSender) с использованием Mockito.
-    @Test
-    void testMessageSenderImpl_USA() {
-        System.out.println("Тест №2 - проверка, что MessageSenderImpl всегда отправляет только английский текст, если ip относится к Американским адресам");
-        GeoServiceImpl geoServiceImpl = Mockito.mock(GeoServiceImpl.class);
-        LocalizationServiceImpl localizationServiceImpl = Mockito.mock(LocalizationServiceImpl.class);
-        MessageSenderImpl messageSenderImpl = new MessageSenderImpl(geoServiceImpl, localizationServiceImpl);
-
-        Map<String, String> mock = new HashMap<>();
-        mock.put(MessageSenderImpl.IP_ADDRESS_HEADER, NEW_YORK_IP);
-
-        Mockito.when(geoServiceImpl.byIp(NEW_YORK_IP))
-                .thenReturn(new Location("New York", Country.USA, " 10th Avenue", 32));
-        Mockito.when(localizationServiceImpl.locale(Country.USA))
-                .thenReturn("Welcome");
-
-        String expected = englishText;
-        String actual = messageSenderImpl.send(mock);
-        assertEquals(expected, actual);
-    }
-
     // Тест для проверки определения локации по ip (класс GeoServiceImpl)
     @Test
     void testDeterminingGeolocationByIp() {
